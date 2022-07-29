@@ -1,5 +1,6 @@
-tmp/*
-output/*
+tmp/
+output/
 Alaska_IA_FireManagementOptions.gdb
 Alaska_IA_FireManagementOptions_metadata.xml
+AlaskaWildlandFire_IA_Management_Options_2022.zip
 .DS_Store

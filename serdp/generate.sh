@@ -5,6 +5,15 @@
 # Download current version from here: https://fire.ak.blm.gov/predsvcs/maps.php
 AICC_FMO_GDB='input/Alaska_IA_FireManagementOptions.gdb'
 
+if [ ! -e $AICC_FMO_GDB ]
+then
+  echo "$AICC_FMO_GDB does not exist."
+  echo "Download fire management options file geodatabase from AICC:"
+  echo "https://fire.ak.blm.gov/predsvcs/maps.php"
+  echo "Then extract it into $AICC_FMO_GDB"
+  exit 1
+fi
+
 mkdir -p tmp output/NoFMO output/FMO output/AltFMO
 
 # Separate and rasterize Critical level polygons

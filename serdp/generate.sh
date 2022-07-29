@@ -18,17 +18,17 @@ mkdir -p tmp output/NoFMO output/FMO output/AltFMO
 
 # Separate and rasterize Critical level polygons
 ogr2ogr -t_srs EPSG:3338 -sql "SELECT * FROM fire_management_options WHERE PROT = 'C'" tmp/reprojected.shp $AICC_FMO_GDB
-gdal_rasterize tmp/reprojected.shp tmp/Alaska_IA_FireManagementOptions_C.tif -a_nodata 0 -a_srs EPSG:3338 -burn 210 -ts 5528 2223 -te -1725223.205807 321412.933 3802776.794 2544412.932644 -ot Float32
+gdal_rasterize tmp/reprojected.shp tmp/AICC_FMO_C.tif -a_nodata 0 -a_srs EPSG:3338 -burn 210 -ts 5528 2223 -te -1725223.205807 321412.933 3802776.794 2544412.932644 -ot Float32
 rm tmp/reprojected.*
 
 # Separate and rasterize Full level polygons
 ogr2ogr -t_srs EPSG:3338 -sql "SELECT * FROM fire_management_options WHERE PROT = 'F'" tmp/reprojected.shp $AICC_FMO_GDB
-gdal_rasterize tmp/reprojected.shp tmp/Alaska_IA_FireManagementOptions_F.tif -a_nodata 0 -a_srs EPSG:3338 -burn 235 -ts 5528 2223 -te -1725223.205807 321412.933 3802776.794 2544412.932644 -ot Float32
+gdal_rasterize tmp/reprojected.shp tmp/AICC_FMO_F.tif -a_nodata 0 -a_srs EPSG:3338 -burn 235 -ts 5528 2223 -te -1725223.205807 321412.933 3802776.794 2544412.932644 -ot Float32
 rm tmp/reprojected.*
 
 # Separate and rasterize Modified level polygons
 ogr2ogr -t_srs EPSG:3338 -sql "SELECT * FROM fire_management_options WHERE PROT = 'M'" tmp/reprojected.shp $AICC_FMO_GDB
-gdal_rasterize tmp/reprojected.shp tmp/Alaska_IA_FireManagementOptions_M.tif -a_nodata 0 -a_srs EPSG:3338 -burn 260 -ts 5528 2223 -te -1725223.205807 321412.933 3802776.794 2544412.932644 -ot Float32
+gdal_rasterize tmp/reprojected.shp tmp/AICC_FMO_M.tif -a_nodata 0 -a_srs EPSG:3338 -burn 260 -ts 5528 2223 -te -1725223.205807 321412.933 3802776.794 2544412.932644 -ot Float32
 rm tmp/reprojected.*
 
 # Create NoFMO rasters
@@ -44,7 +44,7 @@ cp input/extent_mask.tif output/FMO/Ignition1.tif
 cp input/extent_mask.tif output/FMO/Ignition2.tif
 cp input/extent_mask.tif output/FMO/Ignition3.tif
 cp input/extent_mask.tif output/FMO/Sensitivity1.tif
-gdal_merge.py -ot Float32 -of GTiff -o output/FMO/Sensitivity2.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif tmp/Alaska_IA_FireManagementOptions_M.tif
+gdal_merge.py -ot Float32 -of GTiff -o output/FMO/Sensitivity2.tif input/extent_mask.tif tmp/AICC_FMO_C.tif tmp/AICC_FMO_F.tif tmp/AICC_FMO_M.tif
 cp output/FMO/Sensitivity2.tif output/FMO/Sensitivity3.tif
 
 # Create AltFMO rasters
@@ -52,5 +52,5 @@ cp input/extent_mask.tif output/AltFMO/Ignition1.tif
 cp input/extent_mask.tif output/AltFMO/Ignition2.tif
 cp input/extent_mask.tif output/AltFMO/Ignition3.tif
 cp input/extent_mask.tif output/AltFMO/Sensitivity1.tif
-gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity2.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif tmp/Alaska_IA_FireManagementOptions_M.tif
-gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity3.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif input/dod_alt_fmo_areas.tif tmp/Alaska_IA_FireManagementOptions_M.tif
+gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity2.tif input/extent_mask.tif tmp/AICC_FMO_C.tif tmp/AICC_FMO_F.tif tmp/AICC_FMO_M.tif
+gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity3.tif input/extent_mask.tif tmp/AICC_FMO_C.tif tmp/AICC_FMO_F.tif input/dod_alt_fmo_areas.tif tmp/AICC_FMO_M.tif

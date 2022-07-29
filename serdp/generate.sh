@@ -35,7 +35,7 @@ cp input/extent_mask.tif output/FMO/Ignition1.tif
 cp input/extent_mask.tif output/FMO/Ignition2.tif
 cp input/extent_mask.tif output/FMO/Ignition3.tif
 cp input/extent_mask.tif output/FMO/Sensitivity1.tif
-pipenv run gdal_merge.py -ot Float32 -of GTiff -o output/FMO/Sensitivity2.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif tmp/Alaska_IA_FireManagementOptions_M.tif
+gdal_merge.py -ot Float32 -of GTiff -o output/FMO/Sensitivity2.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif tmp/Alaska_IA_FireManagementOptions_M.tif
 cp output/FMO/Sensitivity2.tif output/FMO/Sensitivity3.tif
 
 # Create AltFMO rasters
@@ -43,5 +43,5 @@ cp input/extent_mask.tif output/AltFMO/Ignition1.tif
 cp input/extent_mask.tif output/AltFMO/Ignition2.tif
 cp input/extent_mask.tif output/AltFMO/Ignition3.tif
 cp input/extent_mask.tif output/AltFMO/Sensitivity1.tif
-pipenv run gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity2.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif tmp/Alaska_IA_FireManagementOptions_M.tif
-pipenv run gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity3.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif input/dod_alt_fmo_areas.tif tmp/Alaska_IA_FireManagementOptions_M.tif
+gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity2.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif tmp/Alaska_IA_FireManagementOptions_M.tif
+gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity3.tif input/extent_mask.tif tmp/Alaska_IA_FireManagementOptions_C.tif tmp/Alaska_IA_FireManagementOptions_F.tif input/dod_alt_fmo_areas.tif tmp/Alaska_IA_FireManagementOptions_M.tif

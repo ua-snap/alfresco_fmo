@@ -22,8 +22,8 @@ Outputs will appear in the `output` subdirectory. These outputs should consist o
 
 ```
 $ ls output/FMO
-Ignition.tif		Ignition3.tif		Sensitivity2.tif
-Ignition2.tif		Sensitivity.tif		Sensitivity3.tif
+Ignition1.tif		Ignition3.tif		Sensitivity2.tif
+Ignition2.tif		Sensitivity1.tif		Sensitivity3.tif
 ```
 
 Each file in the `Ignition*.tif` and `Sensitivity*.tif` series corresponds to a fire transition year in the ALFRESCO configuration. The file sequence generally corresponds to these transition years:

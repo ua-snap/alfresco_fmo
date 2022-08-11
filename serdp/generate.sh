@@ -43,24 +43,24 @@ rm tmp/reprojected.*
 
 # Create NoFMO rasters
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/NoFMO/Ignition1.tif --cal="0.000016*(A>0)"
-cp output/NoFMO/Ignition1.tif output/NoFMO/Ignition2.tif
-cp output/NoFMO/Ignition1.tif output/NoFMO/Ignition3.tif
+ln -s Ignition1.tif output/NoFMO/Ignition2.tif
+ln -s Ignition1.tif output/NoFMO/Ignition3.tif
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/NoFMO/Sensitivity1.tif --cal="380*(A>0)"
-cp output/NoFMO/Sensitivity1.tif output/NoFMO/Sensitivity2.tif
-cp output/NoFMO/Sensitivity1.tif output/NoFMO/Sensitivity3.tif
+ln -s Sensitivity1.tif output/NoFMO/Sensitivity2.tif
+ln -s Sensitivity1.tif output/NoFMO/Sensitivity3.tif
 
 # Create FMO rasters
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/FMO/Ignition1.tif --cal="0.000016*(A>0)"
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/FMO/Ignition2.tif --cal="0.000018*(A>0)"
-cp output/FMO/Ignition2.tif output/FMO/Ignition3.tif
+ln -s Ignition2.tif output/FMO/Ignition3.tif
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/FMO/Sensitivity1.tif --cal="380*(A>0)"
 gdal_merge.py -ot Float32 -of GTiff -o output/FMO/Sensitivity2.tif input/extent_mask.tif tmp/AICC_FMO_C.tif tmp/AICC_FMO_F.tif tmp/AICC_FMO_M.tif
-cp output/FMO/Sensitivity2.tif output/FMO/Sensitivity3.tif
+ln -s Sensitivity2.tif output/FMO/Sensitivity3.tif
 
 # Create AltFMO rasters
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/AltFMO/Ignition1.tif --cal="0.000016*(A>0)"
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/AltFMO/Ignition2.tif --cal="0.000018*(A>0)"
-cp output/AltFMO/Ignition2.tif output/AltFMO/Ignition3.tif
+ln -s Ignition2.tif output/AltFMO/Ignition3.tif
 pipenv run gdal_calc.py -A input/extent_mask.tif --outfile=output/AltFMO/Sensitivity1.tif --cal="380*(A>0)"
 gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity2.tif input/extent_mask.tif tmp/AICC_FMO_C.tif tmp/AICC_FMO_F.tif tmp/AICC_FMO_M.tif
 gdal_merge.py -ot Float32 -of GTiff -o output/AltFMO/Sensitivity3.tif input/extent_mask.tif tmp/AICC_FMO_C.tif tmp/AICC_FMO_F.tif input/dod_alt_fmo_areas.tif tmp/AICC_FMO_M.tif

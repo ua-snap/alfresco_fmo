@@ -4,22 +4,29 @@ This repository contains scripts and input files needed to generate the fire man
 
 ## Setup
 
-This tool depends on the `gdal_calc.py` script that was introduced in GDAL 3.0. If you are running this on a system that does not have GDAL 3.0 or above installed globally, you can install it via conda like this:
+This repo depends on the `gdal_calc.py` script that was introduced in GDAL 3.0. If you are running this on a system that does not have GDAL 3.0 or above installed globally, or if you encounter numpy import errors, install GDAL via conda like this:
 
 ```
-conda create --name fmo gdal>=3.0
-conda activate fmo
+conda create --name fmo "gdal>=3.0"
 ```
 
 ## Running
 
-To generate FMO files for a particular project, first check the comments in the project's `generate.sh` script to see if any files need to be downloaded or if variables need to be set to local paths. Then run the script like this:
+To generate FMO files for a particular project, first check the comments in the project's `generate.sh` script to see if any files need to be downloaded or if variables need to be set to local paths.
+
+If you installed GDAL 3.0+ into a conda environment, make sure to activate that first. For example:
+
+```
+conda activate fmo
+```
+
+Then run the script like this:
 
 ```
 ./generate.sh
 ```
 
-Outputs will appear in the `output` subdirectory. These outputs should consist of a set of `Ignition*.tif` and `Sensitivity*.tif` files for each FMO scenario. For example:
+This will output some performance and field truncation warnings that can be ignored. Outputs will appear in the `output` subdirectory. These outputs should consist of a set of `Ignition*.tif` and `Sensitivity*.tif` files for each FMO scenario. For example:
 
 ```
 $ ls output/FMO

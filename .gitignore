@@ -1,5 +1,6 @@
-tmp/*
-output/*
-Alaska_IA_FireManagementOptions.gdb
-Alaska_IA_FireManagementOptions_metadata.xml
+tmp/
+output/
+*.gdb
+*.xml
+*.zip
 .DS_Store
